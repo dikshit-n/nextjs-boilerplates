@@ -1,0 +1,19 @@
+import { AUTH_STATE_DATA } from "..";
+import { AUTH_ACTION_TYPE } from "../action-types-variables";
+
+interface AUTH_START_ACTION {
+  type: AUTH_ACTION_TYPE.AUTHENTICATION_START;
+}
+interface AUTH_SUCCESS_ACTION {
+  type: AUTH_ACTION_TYPE.AUTHENTICATION_SUCCESS;
+  payload: AUTH_STATE_DATA;
+}
+interface AUTH_FAILURE_ACTION {
+  type: AUTH_ACTION_TYPE.AUTHENTICATION_FAILURE;
+  payload: string;
+}
+
+export type AUTH_PAYLOAD =
+  | AUTH_START_ACTION
+  | AUTH_SUCCESS_ACTION
+  | AUTH_FAILURE_ACTION;

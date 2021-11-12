@@ -1,0 +1,22 @@
+import { Dispatch } from "react";
+import { AUTH_ACTION_TYPE, AUTH_PAYLOAD } from "../../data";
+import { axiosInstance } from "../../lib";
+
+export const checkauthStatus = () => {
+  return async (dispatch: Dispatch<AUTH_PAYLOAD>) => {
+    dispatch({ type: AUTH_ACTION_TYPE.AUTHENTICATION_START });
+    try {
+      let { data } = await axiosInstance.get("/checkauthstatus");
+      data = { token: data.token, type: data.type };
+      dispatch({
+        type: AUTH_ACTION_TYPE.AUTHENTICATION_SUCCESS,
+        payload: data,
+      });
+    } catch (err) {
+      dispatch({
+        type: AUTH_ACTION_TYPE.AUTHENTICATION_FAILURE,
+        payload: "Failed to load results",
+      });
+    }
+  };
+};
