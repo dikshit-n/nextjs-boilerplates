@@ -1,2 +1,1 @@
-import AppLoader from "./app-loader";
-export { AppLoader };
+export * from "./app-loader";

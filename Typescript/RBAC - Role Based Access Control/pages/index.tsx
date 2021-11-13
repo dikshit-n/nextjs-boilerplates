@@ -1,22 +1,16 @@
 import type { NextPage } from "next";
-import { useRouter } from "next/dist/client/router";
-import { useEffect } from "react";
 // import Head from 'next/head'
 // import Image from 'next/image'
 import { AppLoader } from "../components/ui";
-import { useTypedSelector } from "../hooks";
 // import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
-  const {
-    data: { type },
-  } = useTypedSelector((state) => state.auth);
-  const { replace } = useRouter();
-  useEffect(() => {
-    replace(`${type}`);
-  }, []);
-  console.log(type);
-  return <AppLoader />;
+  return (
+    <div>
+      index page
+      <AppLoader />
+    </div>
+  );
   // (
   //   <div className={styles.container}>
   //     <Head>

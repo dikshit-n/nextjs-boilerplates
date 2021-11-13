@@ -5,7 +5,7 @@ const initialState: AUTH_STATE = {
     token: null,
     type: null,
   },
-  loading: true,
+  loading: false,
   error: null,
 };
 
@@ -22,6 +22,8 @@ const authReducer = (
       return { loading: false, error: null, data: { ...action.payload } };
     case AUTH_ACTION_TYPE.AUTHENTICATION_FAILURE:
       return { ...state, loading: false, error: action.payload };
+    case AUTH_ACTION_TYPE.AUTHENTICATION_LOGOUT:
+      return initialState;
     default:
       return state;
   }

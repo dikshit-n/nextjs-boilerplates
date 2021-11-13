@@ -1,3 +1,1 @@
-const RBACFallback: React.FC = () => null;
-
-export default RBACFallback;
+export const RBACFallback: React.FC = () => null;

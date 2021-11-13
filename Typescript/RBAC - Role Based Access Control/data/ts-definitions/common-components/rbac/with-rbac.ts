@@ -13,6 +13,6 @@ export interface WITH_RBAC_OPTIONS {
 export interface NOT_FOUND_CHECK_PARAMS {
   notFound: boolean | undefined | null | ReactElement;
   onRoleCheckFailure: ((pathname: string) => any) | undefined;
-  fallback: ReactElement | undefined;
   pathname: string;
+  role: string | null | undefined | false;
 }

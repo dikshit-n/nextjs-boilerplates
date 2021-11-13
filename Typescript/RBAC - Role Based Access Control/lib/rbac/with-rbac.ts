@@ -2,7 +2,7 @@ import { WITH_RBAC_OPTIONS } from "../../data";
 import {
   getReturnElementBasedOnNotFoundProp,
   isAccessibleByRole,
-  isAuthRoute,
+  isUnAuthRoute,
   isPublicRoute,
 } from "./utils";
 
@@ -10,11 +10,18 @@ export const withRBAC = (
   component: JSX.Element,
   options: WITH_RBAC_OPTIONS
 ) => {
-  const { token, pathname, onRoleCheckFailure, loading, fallback, role } =
-    options;
-  const notFound = onRoleCheckFailure ? options.notFound : true;
-  // check whether we are in a public route
-  if (isPublicRoute(pathname) || pathname === "/") {
+  const {
+    token,
+    pathname,
+    onRoleCheckFailure,
+    loading,
+    fallback,
+    role,
+    notFound, // this notFound prop will be considered only when role check fails. Other error pages (like built-in or custom 404 page) will continue to persist even if this notFound prop is falsy.
+  } = options;
+
+  // check whether we are in a public route or an error page
+  if (isPublicRoute(pathname) || pathname === "/_error") {
     return component;
   } else {
     if (loading) return fallback;
@@ -26,21 +33,22 @@ export const withRBAC = (
       // else check for not found
       return getReturnElementBasedOnNotFoundProp({
         pathname,
-        fallback,
         notFound,
         onRoleCheckFailure,
+        role,
       });
     } else {
+      console.log(pathname);
       // check whether we are in login route (unauth routes), then return component else onRoleCheckFailure
-      if (isAuthRoute(pathname)) {
+      if (isUnAuthRoute(pathname)) {
         return component;
       }
       // else check for not found
       return getReturnElementBasedOnNotFoundProp({
         pathname,
-        fallback,
         notFound,
         onRoleCheckFailure,
+        role,
       });
     }
   }

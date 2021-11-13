@@ -20,3 +20,7 @@ export const checkauthStatus = () => {
     }
   };
 };
+
+export const logout = () => ({
+  type: AUTH_ACTION_TYPE.AUTHENTICATION_LOGOUT,
+});
