@@ -9,9 +9,11 @@ const Logout: NextPage = () => {
   const { logout } = useActions();
   const { replace } = useRouter();
   useLayoutEffect(() => {
-    deleteCookie("token");
-    logout();
-    replace("/auth/login");
+    setTimeout(() => {
+      deleteCookie("token");
+      logout();
+      replace("/auth/login");
+    }, 2000);
   }, []);
 
   return <AppLoader />;

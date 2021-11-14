@@ -6,8 +6,7 @@ import {
   PUBLIC_ROUTES,
   UN_AUTH_ROUTES,
 } from "../../data";
-import Error from "next/error";
-import { Replace } from "../../components";
+import { CustomErrorComponent, Replace } from "../../components";
 
 const getValidRouteName = (pathname: string) => {
   if (pathname) {
@@ -78,12 +77,12 @@ export const getReturnElementBasedOnNotFoundProp = (
     // redirect user to the homepage respective to his role ie. `/${role}${HOME_PAGE[role]}`(the route should start with his role name). eg. /superadmin/
     if (HOME_PAGE[role]) return <Replace path={`/${role}${HOME_PAGE[role]}`} />;
     // if homepage is not defined, then return 404 despite checking notFound prop.
-    else return <Error statusCode={404} />;
+    else return <CustomErrorComponent statusCode={404} />;
   }
   if (notFound) {
     // if not found is a boolean return the default 404 page of next js or your custom 404 page based on condition
     if (typeof notFound === "boolean") {
-      if (notFound) return <Error statusCode={404} />;
+      if (notFound) return <CustomErrorComponent statusCode={404} />;
     }
     // else return the custom not found they provided
     return notFound;
@@ -92,7 +91,7 @@ export const getReturnElementBasedOnNotFoundProp = (
     if (role && HOME_PAGE[role])
       return <Replace path={`/${role}${HOME_PAGE[role]}`} />;
     // if homepage is not defined, then return 404 despite checking notFound prop.
-    else return <Error statusCode={404} />;
+    else return <CustomErrorComponent statusCode={404} />;
   }
 };
 

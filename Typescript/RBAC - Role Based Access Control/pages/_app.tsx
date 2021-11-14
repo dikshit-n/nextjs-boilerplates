@@ -18,7 +18,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   const { pathname } = useRouter();
 
   useEffect(() => {
-    if (!isPublicRoute(pathname)) checkauthStatus();
+    // don't check for authentication, if the route is a public or an error page
+    if (!isPublicRoute(pathname) && pathname !== "/_error") checkauthStatus();
   }, []);
   return error ? (
     // logout if error occurs during authentication
