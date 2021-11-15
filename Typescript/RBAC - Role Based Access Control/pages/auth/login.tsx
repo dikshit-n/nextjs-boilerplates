@@ -10,7 +10,7 @@ const Login: NextPage = () => {
   const login = () => {
     const token =
       "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTc4ZTg4NzIzODk5Zjg2MTAxNjU4MWMiLCJ0eXBlIjoiY29tcGFueSIsImlhdCI6MTYzNjk1NzA0OH0.kpPKbUtytDnkePOER9Qw4wiDGWTgEfYcvjMMkm5806A";
-    loginSuccessful({ token, type: "company" });
+    loginSuccessful({ token, type: "superadmin" });
     setCookie("token", token);
     if (query.redirectURL)
       setTimeout(() => {

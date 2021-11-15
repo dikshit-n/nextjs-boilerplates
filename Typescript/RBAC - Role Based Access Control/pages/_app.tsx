@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     // ask for authentication if error occured during authentication
     // if the current page is an unauthroute, then return it
     isAuthRoute(pathname) ? (
-      <Replace path={"/auth/login"} query={{ redirectURL: pathname }} />
+      <Replace path={"/auth"} query={{ redirectURL: pathname }} />
     ) : (
       <Component {...pageProps} />
     )

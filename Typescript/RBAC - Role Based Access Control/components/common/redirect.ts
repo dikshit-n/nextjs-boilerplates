@@ -2,10 +2,10 @@ import { useRouter } from "next/dist/client/router";
 import { useEffect } from "react";
 import { REDIRECT_PROPS } from "../../data";
 
-export const Redirect = ({ path }: REDIRECT_PROPS) => {
+export const Redirect = ({ path, query }: REDIRECT_PROPS) => {
   const { push } = useRouter();
   useEffect(() => {
-    push(path);
+    push({ pathname: `${path}`, query });
   }, []);
   return null;
 };
