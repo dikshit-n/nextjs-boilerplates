@@ -2,10 +2,8 @@ import { ReactElement } from "react";
 
 export interface WITH_RBAC_OPTIONS {
   pathname: string;
-  fallback?: ReactElement;
   onRoleCheckFailure?: (pathname: string) => any;
   token: string | null | undefined | false;
-  loading: boolean | undefined | null;
   notFound?: boolean | undefined | null | ReactElement;
   role: string | null | undefined | false;
 }

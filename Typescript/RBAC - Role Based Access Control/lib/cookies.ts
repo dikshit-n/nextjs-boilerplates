@@ -9,7 +9,7 @@ export function getCookie(name: any) {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-export function setCookie(name: any, value: any, options: any) {
+export function setCookie(name: any, value: any, options?: any) {
   options = {
     path: "/",
     // add other defaults here if necessary

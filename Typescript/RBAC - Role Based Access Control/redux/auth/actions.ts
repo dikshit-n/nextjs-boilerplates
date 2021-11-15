@@ -1,6 +1,11 @@
 import { Dispatch } from "react";
-import { AUTH_ACTION_TYPE, AUTH_PAYLOAD } from "../../data";
+import { AUTH_ACTION_TYPE, AUTH_PAYLOAD, AUTH_STATE_DATA } from "../../data";
 import { axiosInstance } from "../../lib";
+
+export const loginSuccessful = (data: AUTH_STATE_DATA) => ({
+  type: AUTH_ACTION_TYPE.AUTHENTICATION_SUCCESS,
+  payload: data,
+});
 
 export const checkauthStatus = () => {
   return async (dispatch: Dispatch<AUTH_PAYLOAD>) => {

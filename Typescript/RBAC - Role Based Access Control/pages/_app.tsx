@@ -5,8 +5,9 @@ import { useActions, useTypedSelector } from "../hooks";
 import { useEffect } from "react";
 import { AppLoader } from "../components/ui";
 import { useRouter } from "next/dist/client/router";
-import { isPublicRoute, withRBAC } from "../lib";
-import Logout from "./logout";
+import { isAuthRoute, isPublicRoute, isUnAuthRoute, withRBAC } from "../lib";
+// import Logout from "./logout";
+import { Replace } from "../components";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { checkauthStatus } = useActions();
@@ -15,22 +16,30 @@ function MyApp({ Component, pageProps }: AppProps) {
     loading,
     error,
   } = useTypedSelector((state) => state.auth);
-  const { pathname } = useRouter();
+  const router = useRouter();
+  const { pathname } = router;
 
   useEffect(() => {
     // don't check for authentication, if the route is a public or an error page
     if (!isPublicRoute(pathname) && pathname !== "/_error") checkauthStatus();
   }, []);
-  return error ? (
-    // logout if error occurs during authentication
-    <Logout />
+  return loading ? (
+    <AppLoader {...pageProps} />
+  ) : error ? (
+    // ask for authentication if error occured during authentication
+    // if the current page is an unauthroute, then return it
+    isAuthRoute(pathname) ? (
+      <Replace path={"/auth/login"} query={{ redirectURL: pathname }} />
+    ) : (
+      <Component {...pageProps} />
+    )
   ) : (
+    // logout if error occurs during authentication
+    // <Logout />
     withRBAC(<Component {...pageProps} />, {
       pathname,
       token,
-      loading,
-      fallback: <AppLoader {...pageProps} />,
-      notFound: false,
+      notFound: false, // whether to display notFound when role check fails
       role: type,
     })
   );

@@ -1,11 +1,11 @@
 import { useRouter } from "next/dist/client/router";
 import { useEffect } from "react";
-import { REPLACE_PROPS } from "../../data/ts-definitions/common-components/replace";
+import { REPLACE_PROPS } from "../../data";
 
-export const Replace = ({ path }: REPLACE_PROPS) => {
+export const Replace = ({ path, query }: REPLACE_PROPS) => {
   const { replace } = useRouter();
   useEffect(() => {
-    replace(path);
+    replace({ pathname: path, query });
   }, []);
   return null;
 };

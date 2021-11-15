@@ -58,7 +58,6 @@ export const isAccessibleByRole = (
   if (pathname && role) {
     pathname = getValidRouteName(pathname);
     role = getValidRouteName(role);
-    console.log(pathname, role);
     return (
       !!ACCESSIBLE_BY_ALL_ROLES.find((route) =>
         isRoutePresent(`${pathname}`, route)

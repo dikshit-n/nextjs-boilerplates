@@ -14,8 +14,6 @@ export const withRBAC = (
     token,
     pathname,
     onRoleCheckFailure,
-    loading,
-    fallback,
     role,
     notFound, // this notFound prop will be considered only when role check fails. Other error pages (like built-in or custom 404 page) will continue to persist even if this notFound prop is falsy.
   } = options;
@@ -24,7 +22,6 @@ export const withRBAC = (
   if (isPublicRoute(pathname) || pathname === "/_error") {
     return component;
   } else {
-    if (loading) return fallback;
     if (token) {
       // check whether the route is accessible by specified role
       if (isAccessibleByRole(pathname, role)) {
@@ -38,7 +35,6 @@ export const withRBAC = (
         role,
       });
     } else {
-      console.log(pathname);
       // check whether we are in login route (unauth routes), then return component else onRoleCheckFailure
       if (isUnAuthRoute(pathname)) {
         return component;

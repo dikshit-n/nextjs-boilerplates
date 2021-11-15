@@ -1,4 +1,4 @@
-import { AUTH_STATE_DATA } from "..";
+import { AUTH_STATE_DATA } from "../state-interfaces";
 import { AUTH_ACTION_TYPE } from "../action-types-variables";
 
 interface AUTH_START_ACTION {
