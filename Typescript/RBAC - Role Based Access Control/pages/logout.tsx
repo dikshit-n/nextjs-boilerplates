@@ -1,7 +1,7 @@
-import { NextPage } from "next";
+import { NextPage } from "../data";
 import { useRouter } from "next/dist/client/router";
 import { useLayoutEffect } from "react";
-import { AppLoader } from "../components/ui";
+import { AppLoader } from "../components";
 import { useActions } from "../hooks";
 import { deleteCookie } from "../lib";
 

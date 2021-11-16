@@ -1,4 +1,4 @@
-import { NextPage } from "next/types";
+import { NextPage } from "../data";
 import { CustomErrorComponent } from "../components";
 import { CUSTOM_ERROR_PROPS } from "../data";
 

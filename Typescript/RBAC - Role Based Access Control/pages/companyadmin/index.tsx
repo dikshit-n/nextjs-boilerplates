@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { NextPage } from "../../data";
 
 const CompanyAdmin: NextPage = () => {
   return <div>Company admin page</div>;

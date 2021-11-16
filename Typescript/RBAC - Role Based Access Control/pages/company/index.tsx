@@ -1,4 +1,4 @@
-import { NextPage } from "next/types";
+import { NextPage } from "../../data";
 import Link from "next/link";
 import { axiosInstance } from "../../lib";
 

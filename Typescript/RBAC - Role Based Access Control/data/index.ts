@@ -4,3 +4,4 @@ export * from "./common-components";
 export * from "./redux";
 export * from "./custom-error";
 export * from "./rbac-setup";
+export * from "./predefined-interfaces";

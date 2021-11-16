@@ -1,8 +1,8 @@
-import type { NextPage } from "next";
+import { NextPage } from "../data";
 // import Head from 'next/head'
 // import Image from 'next/image'
-import { AppLoader } from "../components/ui";
-// import styles from '../styles/Home.module.css'
+import { AppLoader } from "../components";
+// import classes from '../assets/scss/home.module.scss'
 
 const Home: NextPage = () => {
   return (

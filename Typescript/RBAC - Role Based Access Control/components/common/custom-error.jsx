@@ -4,7 +4,8 @@ export const CustomErrorComponent = ({ statusCode }) => {
   const [opacity, setOpacity] = useState(0);
   // to avoid the glitch, reduce the opacity for a second
   useEffect(() => {
-    setTimeout(() => setOpacity(1), 1000);
+    let glitchFix = setTimeout(() => setOpacity(1), 1000);
+    return () => clearTimeout(glitchFix);
   }, []);
   return (
     <div style={{ opacity }}>

@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { NextPage } from "../../data";
 
 const Signup: NextPage = () => {
   return <div>Signup Page</div>;

@@ -1,4 +1,4 @@
-import { NextPage } from "next";
+import { NextPage } from "../../data";
 import { useRouter } from "next/dist/client/router";
 import { Replace } from "../../components";
 

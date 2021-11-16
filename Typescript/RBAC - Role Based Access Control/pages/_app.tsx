@@ -1,11 +1,11 @@
-import "../styles/globals.css";
-import type { AppProps } from "next/app";
+import "../assets/scss/globals.scss";
+import { AppProps } from "../data";
 import { wrapper } from "../redux";
 import { useActions, useTypedSelector } from "../hooks";
 import { useEffect } from "react";
-import { AppLoader } from "../components/ui";
+import { AppLoader } from "../components";
 import { useRouter } from "next/dist/client/router";
-import { isAuthRoute, isPublicRoute, isUnAuthRoute, withRBAC } from "../lib";
+import { isAuthRoute, isPublicRoute, withRBAC } from "../lib";
 // import Logout from "./logout";
 import { Replace } from "../components";
 
