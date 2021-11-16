@@ -1,4 +1,4 @@
-import { Dispatch } from "react";
+import { Dispatch } from "../../data";
 import { AUTH_ACTION_TYPE, AUTH_PAYLOAD, AUTH_STATE_DATA } from "../../data";
 import { axiosInstance } from "../../lib";
 
