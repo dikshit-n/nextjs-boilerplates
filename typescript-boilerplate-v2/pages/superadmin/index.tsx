@@ -1,4 +1,5 @@
 import { Authenticated } from "@/guards";
+import { SuperadminLayout } from "@/layouts";
 import { NextPage } from "next";
 
 const SuperadminHome: NextPage = (props) => {
@@ -6,7 +7,9 @@ const SuperadminHome: NextPage = (props) => {
 };
 
 SuperadminHome.getLayout = (page) => (
-  <Authenticated roles={["superadmin"]}>{page}</Authenticated>
+  <Authenticated roles={["superadmin"]}>
+    <SuperadminLayout>{page}</SuperadminLayout>
+  </Authenticated>
 );
 
 export default SuperadminHome;

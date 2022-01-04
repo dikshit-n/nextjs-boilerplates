@@ -1,5 +1,4 @@
 // auth setup
-
 export const authSetup = {
   token: "token",
   authPage: "/auth/login",
