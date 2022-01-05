@@ -1,1 +1,1 @@
-export * from "./accent-header-layout";
+export * from "./extended-sidebar-layout";

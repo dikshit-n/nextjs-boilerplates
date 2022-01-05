@@ -1,15 +1,15 @@
-import { AccentHeaderLayout } from "@/layouts";
+import { ExtendedSidebarLayout } from "@/layouts";
 export const AdminLayout: React.FC = (props) => {
   const { children } = props;
   // const headerLinks = {}
   // const sidebarLinks = {}
 
   return (
-    <AccentHeaderLayout
+    <ExtendedSidebarLayout
     // headerLinks={headerLinks}
     // sidebarLinks={sidebarLinks}
     >
       {children}
-    </AccentHeaderLayout>
+    </ExtendedSidebarLayout>
   );
 };

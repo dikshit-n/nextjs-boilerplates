@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { CustomButton } from "@/components";
 import { styled } from "@mui/material/styles";
 import { red } from "@mui/material/colors";
+import { HomePageLayout } from "@/layouts";
 
 // either a public page / redirect to login page
 
@@ -31,6 +32,10 @@ const Home: NextPage = () => {
   );
 };
 
-Home.getLayout = (page) => <Authenticated>{page}</Authenticated>;
+Home.getLayout = (page) => (
+  <Authenticated>
+    <HomePageLayout>{page}</HomePageLayout>
+  </Authenticated>
+);
 
 export default Home;

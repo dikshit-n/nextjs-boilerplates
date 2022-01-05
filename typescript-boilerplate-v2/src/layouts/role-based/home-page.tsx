@@ -1,5 +1,5 @@
 import { ExtendedSidebarLayout } from "@/layouts";
-export const SuperadminLayout: React.FC = (props) => {
+export const HomePageLayout: React.FC = (props) => {
   const { children } = props;
   // const headerLinks = {}
   // const sidebarLinks = {}

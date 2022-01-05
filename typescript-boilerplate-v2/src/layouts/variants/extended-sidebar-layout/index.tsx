@@ -1,0 +1,57 @@
+import { styled, useTheme } from "@mui/material/styles";
+import { Header } from "./header";
+import { Sidebar } from "./sidebar";
+import Box from "@mui/material/Box";
+import { SidebarProvider } from "@/context";
+
+const LayoutContainer = styled(Box)(
+  ({ theme }) => `
+    width: 100%;
+    zIndex: 0;
+    height: 100vh;
+    overflow: hidden;
+    ${theme.breakpoints.up("lg")} {
+      display: grid;
+      grid-template-columns: ${theme.sidebar.width} calc(100vw - ${
+    theme.sidebar.width
+  });
+    }
+  `
+);
+const MainContainer = styled(Box)`
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+`;
+
+const ContentContainer = styled(Box)(
+  ({ theme }) => `
+  width: 100%;
+  position: relative;
+  height: calc(100vh - ${theme.header.height});
+  max-height: calc(100vh - ${theme.header.height});
+  background: orange;
+
+  // margin approach
+  // ${theme.breakpoints.up("lg")} {
+    // margin-left: ${theme.sidebar.width};
+  //   width: calc(100% - ${theme.sidebar.width});
+  // }
+  `
+);
+
+export const ExtendedSidebarLayout: React.FC = (props) => {
+  const { children } = props;
+
+  return (
+    <SidebarProvider>
+      <LayoutContainer>
+        <Sidebar />
+        <MainContainer>
+          <Header />
+          <ContentContainer>{children}</ContentContainer>
+        </MainContainer>
+      </LayoutContainer>
+    </SidebarProvider>
+  );
+};

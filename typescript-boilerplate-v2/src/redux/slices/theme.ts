@@ -1,8 +1,16 @@
 import { THEME } from "@/theme";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: THEME =
-  (localStorage.getItem("theme") as THEME) || "pure-light-theme";
+const getTheme = () => {
+  try {
+    return (
+      (window.localStorage.getItem("theme") as THEME) || "pure-light-theme"
+    );
+  } catch {
+    return "pure-light-theme";
+  }
+};
+const initialState: THEME = getTheme();
 
 const slice = createSlice({
   name: "theme",

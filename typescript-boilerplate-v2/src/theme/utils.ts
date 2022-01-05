@@ -2,6 +2,8 @@ import * as CustomThemes from "./variants";
 
 const customThemes = {
   "pure-light-theme": CustomThemes.PureLightTheme,
+  "grey-goose-theme": CustomThemes.GreyGooseTheme,
+  "purple-flow-theme": CustomThemes.PurpleFlowTheme,
 };
 
 export type THEME = keyof typeof customThemes;
