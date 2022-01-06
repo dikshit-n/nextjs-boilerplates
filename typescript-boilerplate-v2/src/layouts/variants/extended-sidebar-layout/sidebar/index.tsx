@@ -3,6 +3,8 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import { SidebarContext } from "@/context";
+import { SidebarMenu } from "./sidebar-menu";
+import { SIDEBAR_MENU_ITEMS_STRUCTURE } from "@/models";
 
 const StyledSidebar = styled(Box)(
   ({ theme }) => `
@@ -20,16 +22,20 @@ const StyledSidebar = styled(Box)(
   `
 );
 
-export const Sidebar: React.FC = () => {
+export const Sidebar: React.FC<{ routes?: SIDEBAR_MENU_ITEMS_STRUCTURE }> = (
+  props
+) => {
   const { isOpen, closeSidebar } = useContext(SidebarContext);
 
   return (
     <>
-      <StyledSidebar
-        sx={{ display: { xs: "none", lg: "inline-block" } }}
-      ></StyledSidebar>
+      <StyledSidebar sx={{ display: { xs: "none", lg: "inline-block" } }}>
+        <SidebarMenu routes={props.routes} />
+      </StyledSidebar>
       <Drawer open={isOpen} onClose={closeSidebar}>
-        <StyledSidebar></StyledSidebar>
+        <StyledSidebar>
+          <SidebarMenu routes={props.routes} />
+        </StyledSidebar>
       </Drawer>
     </>
   );

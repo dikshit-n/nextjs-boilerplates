@@ -1,9 +1,10 @@
+import { SuperadminDashboard } from "@/content";
 import { Authenticated } from "@/guards";
 import { SuperadminLayout } from "@/layouts";
 import { NextPage } from "next";
 
 const SuperadminHome: NextPage = (props) => {
-  return <div>Superadmin Home</div>;
+  return <SuperadminDashboard />;
 };
 
 SuperadminHome.getLayout = (page) => (

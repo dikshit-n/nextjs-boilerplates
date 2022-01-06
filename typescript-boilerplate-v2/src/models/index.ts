@@ -70,3 +70,23 @@ export interface CUSTOM_ICON_BUTTON_PROPS
         options?: (TransitionOptions & { replace?: boolean }) | undefined;
       };
 }
+
+// layouts
+// extended-sidebar-layout
+
+export interface EXTENDED_SIDEBAR_LAYOUT_PROPS {
+  headerLinks?: any;
+  sidebarRoutes?: SIDEBAR_MENU_ITEMS_STRUCTURE;
+}
+
+export interface SIDEBAR_MENU_ITEM_STRUCTURE {
+  link?: string;
+  label?: string;
+  icon?: React.ReactNode;
+  items?: SIDEBAR_MENU_ITEM_STRUCTURE[];
+}
+
+export type SIDEBAR_MENU_ITEMS_STRUCTURE = {
+  heading?: string;
+  items?: SIDEBAR_MENU_ITEM_STRUCTURE[];
+}[];

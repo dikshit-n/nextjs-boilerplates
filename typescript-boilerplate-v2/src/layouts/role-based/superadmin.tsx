@@ -1,4 +1,5 @@
 import { ExtendedSidebarLayout } from "@/layouts";
+import { routes } from "@/routes";
 export const SuperadminLayout: React.FC = (props) => {
   const { children } = props;
   // const headerLinks = {}
@@ -6,8 +7,8 @@ export const SuperadminLayout: React.FC = (props) => {
 
   return (
     <ExtendedSidebarLayout
-    // headerLinks={headerLinks}
-    // sidebarLinks={sidebarLinks}
+      // headerLinks={headerLinks}
+      sidebarRoutes={routes.superadmin}
     >
       {children}
     </ExtendedSidebarLayout>

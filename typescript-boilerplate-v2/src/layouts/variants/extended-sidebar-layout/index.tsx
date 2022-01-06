@@ -3,6 +3,7 @@ import { Header } from "./header";
 import { Sidebar } from "./sidebar";
 import Box from "@mui/material/Box";
 import { SidebarProvider } from "@/context";
+import { EXTENDED_SIDEBAR_LAYOUT_PROPS } from "@/models";
 
 const LayoutContainer = styled(Box)(
   ({ theme }) => `
@@ -40,13 +41,15 @@ const ContentContainer = styled(Box)(
   `
 );
 
-export const ExtendedSidebarLayout: React.FC = (props) => {
+export const ExtendedSidebarLayout: React.FC<EXTENDED_SIDEBAR_LAYOUT_PROPS> = (
+  props
+) => {
   const { children } = props;
 
   return (
     <SidebarProvider>
       <LayoutContainer>
-        <Sidebar />
+        <Sidebar routes={props.sidebarRoutes} />
         <MainContainer>
           <Header />
           <ContentContainer>{children}</ContentContainer>

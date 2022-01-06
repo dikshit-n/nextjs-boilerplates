@@ -9,7 +9,7 @@ export const authSetup = {
 export const rbacSetup = {
   roles: ["admin", "superadmin"],
   homePage: {
-    admin: "/",
-    superadmin: "/",
+    admin: "/admin",
+    superadmin: "/superadmin",
   },
 };
