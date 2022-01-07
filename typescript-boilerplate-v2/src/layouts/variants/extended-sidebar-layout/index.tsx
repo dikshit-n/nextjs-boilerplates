@@ -1,4 +1,4 @@
-import { styled, useTheme } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import { Header } from "./header";
 import { Sidebar } from "./sidebar";
 import Box from "@mui/material/Box";

@@ -7,9 +7,7 @@ export const isActiveRoute = ({
 }) => {
   path = getValidRouteName(path);
   route = getValidRouteName(route);
-  return path === "/" || route === "/" // strict check if the path is '/'
-    ? route === path
-    : path.startsWith(route) || route.startsWith(path);
+  return path === route;
 };
 
 const getValidRouteName = (pathname: string) => {

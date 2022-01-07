@@ -5,6 +5,7 @@ import ListItem from "@mui/material/ListItem";
 import Collapse from "@mui/material/Collapse";
 import ExpandLessTwoToneIcon from "@mui/icons-material/ExpandLessTwoTone";
 import ExpandMoreTwoToneIcon from "@mui/icons-material/ExpandMoreTwoTone";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import Link from "next/link";
 import clsx from "clsx";
 import { useRouter } from "next/router";
@@ -19,20 +20,25 @@ export const SidebarMenuItem: React.FC<SIDEBAR_MENU_ITEM_STRUCTURE> = (
 
   if (items) {
     return (
-      <ListItem component="div">
+      <ListItem component="div" className="sub-menu">
         <Button
-          startIcon={icon}
+          startIcon={
+            icon || (
+              <FiberManualRecordIcon sx={{ width: 10, height: 10, mx: 0.5 }} />
+            )
+          }
           endIcon={
             isOpen ? <ExpandLessTwoToneIcon /> : <ExpandMoreTwoToneIcon />
           }
           className={clsx({
             "Mui-active": isOpen,
+            "drop-down-toggle": true,
           })}
           onClick={() => setIsOpen((prev) => !prev)}
         >
           {label}
         </Button>
-        <Collapse>
+        <Collapse in={isOpen}>
           {items.map((el, index) => (
             <SidebarMenuItem key={index} {...el} />
           ))}
@@ -40,15 +46,19 @@ export const SidebarMenuItem: React.FC<SIDEBAR_MENU_ITEM_STRUCTURE> = (
       </ListItem>
     );
   }
-
   return link ? (
     <ListItem component="div">
       <Link href={link} passHref>
         <Button
           className={clsx({
             "Mui-active": isActiveRoute({ path: router.asPath, route: link }),
+            "has-default-icon": !!!icon, // if an icon is not provided, we will use a default icon
           })}
-          startIcon={icon}
+          startIcon={
+            icon || (
+              <FiberManualRecordIcon sx={{ width: 10, height: 10, mx: 0.5 }} />
+            )
+          }
           component="a"
           disableRipple
         >
