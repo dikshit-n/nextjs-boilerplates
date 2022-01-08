@@ -11,14 +11,8 @@ import { useEffect } from "react";
 
 // either a public page / redirect to login page
 
-const StyledButton = styled(CustomButton)(
-  ({ theme }) => `
-    background: ${red[200]};
-  `
-);
-
 const Home: NextPage = () => {
-  const { data, isAuthenticated, logout } = useAuth();
+  const { data, logout } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -31,16 +25,7 @@ const Home: NextPage = () => {
       );
   }, [router.isReady]);
 
-  const handleLogout = async () => {
-    await logout();
-    router.push(authSetup.authPage);
-  };
-
-  return (
-    <div>
-      <StyledButton onClick={handleLogout}>Logout</StyledButton>
-    </div>
-  );
+  return <div>Loading...</div>;
 };
 
 Home.getLayout = (page) => (

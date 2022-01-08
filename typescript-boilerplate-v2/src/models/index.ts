@@ -1,3 +1,6 @@
+import { BoxProps } from "@mui/material/Box";
+import { ButtonProps } from "@mui/material/Button";
+import { PopoverProps } from "@mui/material/Popover";
 import { IconButtonProps } from "@mui/material/IconButton";
 import { ParsedUrlQueryInput } from "querystring";
 
@@ -71,11 +74,33 @@ export interface CUSTOM_ICON_BUTTON_PROPS
       };
 }
 
+// custom button props
+export interface CUSTOM_BUTTON_PROPS extends Omit<ButtonProps, "href"> {
+  loading?: boolean | null;
+  href?:
+    | UrlObject
+    | string
+    | {
+        url: UrlObject | string;
+        as?: (UrlObject | string) | undefined;
+        options?: (TransitionOptions & { replace?: boolean }) | undefined;
+      };
+}
+
+// custom-popover
+export interface CUSTOM_POPOVER_PROPS
+  extends Omit<PopoverProps, "open" | "ref"> {
+  trigger?: { component: JSX.Element | null } | null;
+  triggerContainerProps?: Omit<BoxProps, "ref">;
+  open?: boolean;
+  closeOnClick?: boolean;
+}
+
 // layouts
 // extended-sidebar-layout
 
 export interface EXTENDED_SIDEBAR_LAYOUT_PROPS {
-  headerLinks?: any;
+  headerProps?: HEADER_PROPS;
   sidebarRoutes?: SIDEBAR_MENU_ITEMS_STRUCTURE;
 }
 
@@ -90,3 +115,19 @@ export type SIDEBAR_MENU_ITEMS_STRUCTURE = {
   heading?: string;
   items?: SIDEBAR_MENU_ITEM_STRUCTURE[];
 }[];
+
+// header
+interface HEADER_USER_ACTION extends CUSTOM_BUTTON_PROPS {
+  label?: string | JSX.Element;
+}
+export type HEADER_USER_ACTIONS = HEADER_USER_ACTION[];
+
+export interface HEADER_PROPS {
+  avatar?: {
+    image?: string | null;
+    name?: string;
+    email?: string;
+    actions?: HEADER_USER_ACTIONS;
+    logout?: (params: any) => any;
+  };
+}

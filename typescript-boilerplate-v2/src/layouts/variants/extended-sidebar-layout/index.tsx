@@ -3,7 +3,7 @@ import { Header } from "./header";
 import { Sidebar } from "./sidebar";
 import Box from "@mui/material/Box";
 import { SidebarProvider } from "@/context";
-import { EXTENDED_SIDEBAR_LAYOUT_PROPS } from "@/models";
+import { EXTENDED_SIDEBAR_LAYOUT_PROPS, HEADER_PROPS } from "@/models";
 
 const LayoutContainer = styled(Box)(
   ({ theme }) => `
@@ -31,7 +31,6 @@ const ContentContainer = styled(Box)(
   position: relative;
   height: calc(100vh - ${theme.header.height});
   max-height: calc(100vh - ${theme.header.height});
-  background: orange;
 
   // margin approach
   // ${theme.breakpoints.up("lg")} {
@@ -51,7 +50,7 @@ export const ExtendedSidebarLayout: React.FC<EXTENDED_SIDEBAR_LAYOUT_PROPS> = (
       <LayoutContainer>
         <Sidebar routes={props.sidebarRoutes} />
         <MainContainer>
-          <Header />
+          <Header {...props.headerProps} />
           <ContentContainer>{children}</ContentContainer>
         </MainContainer>
       </LayoutContainer>

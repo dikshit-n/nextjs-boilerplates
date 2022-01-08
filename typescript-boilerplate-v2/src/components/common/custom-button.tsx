@@ -1,4 +1,5 @@
-import Button, { ButtonProps } from "@mui/material/Button";
+import { CUSTOM_BUTTON_PROPS } from "@/models";
+import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
 import { ParsedUrlQueryInput } from "querystring";
@@ -41,38 +42,3 @@ export const CustomButton: React.FC<CUSTOM_BUTTON_PROPS> = (props) => {
     </Button>
   );
 };
-
-// models
-
-// custom button props
-interface TransitionOptions {
-  shallow?: boolean;
-  locale?: string | false;
-  scroll?: boolean;
-}
-export interface UrlObject {
-  auth?: string | null | undefined;
-  hash?: string | null | undefined;
-  host?: string | null | undefined;
-  hostname?: string | null | undefined;
-  href?: string | null | undefined;
-  pathname?: string | null | undefined;
-  protocol?: string | null | undefined;
-  search?: string | null | undefined;
-  slashes?: boolean | null | undefined;
-  port?: string | number | null | undefined;
-  query?: string | null | ParsedUrlQueryInput | undefined;
-  replace?: boolean;
-}
-
-export interface CUSTOM_BUTTON_PROPS extends Omit<ButtonProps, "href"> {
-  loading?: boolean | null;
-  href?:
-    | UrlObject
-    | string
-    | {
-        url: UrlObject | string;
-        as?: (UrlObject | string) | undefined;
-        options?: (TransitionOptions & { replace?: boolean }) | undefined;
-      };
-}

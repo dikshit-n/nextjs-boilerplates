@@ -6,6 +6,7 @@ import { Provider as StoreProvider } from "react-redux";
 import { store } from "@/redux";
 import { Public } from "@/guards";
 import { ThemeProvider } from "@/theme";
+import "@/assets/scss/global.scss";
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
