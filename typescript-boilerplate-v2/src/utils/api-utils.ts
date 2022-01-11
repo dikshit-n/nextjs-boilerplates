@@ -41,7 +41,7 @@ export const axiosInstance = axios.create({
 // setting token in header for each request
 axiosInstance.interceptors.request.use(
   (config) => {
-    let token = getCookie(authSetup.token); // getting token from cookies
+    let token = getCookie(authSetup.tokenAccessor); // getting token from cookies
     if (token && config.headers)
       config.headers["Authorization"] = `Bearer ${token}`;
     return config;

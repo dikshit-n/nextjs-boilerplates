@@ -10,11 +10,11 @@ import Card from "@mui/material/Card";
 import Stack from "@mui/material/Stack";
 import { SidebarContext } from "@/context";
 import { CustomIconButton, CustomPopover, CustomButton } from "@/components";
-import { CUSTOM_ICON_BUTTON_PROPS, HEADER_PROPS } from "@/models";
+import { CUSTOM_ICON_BUTTON_PROPS, HEADER_PROPS } from "@/model";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
-import { CUSTOM_BUTTON_PROPS } from "@/models";
+import { CUSTOM_BUTTON_PROPS } from "@/model";
 import LockOpenOutlined from "@mui/icons-material/LockOpenOutlined";
 
 const StyledHeader = styled(Box)(

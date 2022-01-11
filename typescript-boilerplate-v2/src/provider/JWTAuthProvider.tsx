@@ -1,27 +1,24 @@
-import { authApi } from "@/api";
-import { useActions } from "@/hooks";
-import { useSelector } from "@/redux";
-import { getCookie } from "@/utils";
+import { useAuth } from "@/hooks";
+import { getError } from "@/utils";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 export const JWTAuthProvider: React.FC = (props) => {
-  const { auth } = useActions();
-  const { isInitialized } = useSelector((state) => state.auth);
+  const { initialize, isInitialized } = useAuth();
+  const { isReady } = useRouter();
 
   useEffect(() => {
-    const initialize = async () => {
+    if (!isReady) return;
+    const initializeApp = async () => {
       try {
-        const token = getCookie("token");
-        if (token) {
-          const loginData = await authApi.initialize();
-          auth.initialize({ data: loginData, isAuthenticated: true });
-        } else auth.initialize({ data: null, isAuthenticated: false });
+        await initialize();
+        window.flash({ message: "Authentication successfull" });
       } catch (err) {
-        auth.initialize({ data: null, isAuthenticated: false });
+        window.flash({ message: getError(err), variant: "error" });
       }
     };
-    initialize();
-  }, []);
+    initializeApp();
+  }, [isReady]);
 
   return <>{isInitialized ? props.children : <div>Initializing...</div>}</>;
 };

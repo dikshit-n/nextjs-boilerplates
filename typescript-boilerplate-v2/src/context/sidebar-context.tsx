@@ -1,4 +1,4 @@
-import { SIDEBAR_CONTEXT } from "@/models";
+import { SIDEBAR_CONTEXT } from "@/model";
 import { createContext, useState } from "react";
 
 export const SidebarContext = createContext({} as SIDEBAR_CONTEXT);

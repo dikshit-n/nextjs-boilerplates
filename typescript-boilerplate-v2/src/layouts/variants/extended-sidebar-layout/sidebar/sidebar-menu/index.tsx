@@ -1,4 +1,4 @@
-import { SIDEBAR_MENU_ITEMS_STRUCTURE } from "@/models";
+import { SIDEBAR_MENU_ITEMS_STRUCTURE } from "@/model";
 import { styled } from "@mui/material/styles";
 import List from "@mui/material/List";
 import ListSubheader from "@mui/material/ListSubheader";

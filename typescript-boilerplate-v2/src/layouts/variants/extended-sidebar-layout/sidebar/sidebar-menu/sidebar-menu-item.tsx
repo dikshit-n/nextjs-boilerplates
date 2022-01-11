@@ -1,4 +1,4 @@
-import { SIDEBAR_MENU_ITEM_STRUCTURE } from "@/models";
+import { SIDEBAR_MENU_ITEM_STRUCTURE } from "@/model";
 import { isActiveRoute } from "@/utils";
 import Button from "@mui/material/Button";
 import ListItem from "@mui/material/ListItem";

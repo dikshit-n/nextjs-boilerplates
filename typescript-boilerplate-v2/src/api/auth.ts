@@ -1,4 +1,4 @@
-import { AUTH_DATA, LOGIN_DATA } from "@/models";
+import { AUTH_DATA, LOGIN_DATA } from "@/model";
 import { axiosInstance } from "@/utils";
 
 class AuthApi {
@@ -17,6 +17,16 @@ class AuthApi {
       try {
         const { data } = await axiosInstance.get("/auth/refresh");
         resolve(data);
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
+  logout(): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await axiosInstance.get("/auth/logout");
+        resolve();
       } catch (err) {
         reject(err);
       }

@@ -3,7 +3,7 @@ import { Header } from "./header";
 import { Sidebar } from "./sidebar";
 import Box from "@mui/material/Box";
 import { SidebarProvider } from "@/context";
-import { EXTENDED_SIDEBAR_LAYOUT_PROPS, HEADER_PROPS } from "@/models";
+import { EXTENDED_SIDEBAR_LAYOUT_PROPS, HEADER_PROPS } from "@/model";
 
 const LayoutContainer = styled(Box)(
   ({ theme }) => `

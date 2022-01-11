@@ -1,4 +1,4 @@
-import { CUSTOM_ICON_BUTTON_PROPS } from "@/models";
+import { CUSTOM_ICON_BUTTON_PROPS } from "@/model";
 import IconButton from "@mui/material/IconButton";
 import { useRouter } from "next/router";
 

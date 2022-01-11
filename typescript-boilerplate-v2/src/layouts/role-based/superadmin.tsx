@@ -1,7 +1,7 @@
 import { authSetup } from "@/data";
 import { useAuth } from "@/hooks";
 import { ExtendedSidebarLayout } from "@/layouts";
-import { HEADER_PROPS } from "@/models";
+import { HEADER_PROPS } from "@/model";
 import { routes } from "@/routes";
 import { useRouter } from "next/router";
 

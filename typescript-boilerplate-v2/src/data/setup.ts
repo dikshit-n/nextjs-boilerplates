@@ -1,7 +1,7 @@
 // auth setup
 export const authSetup = {
-  token: "token",
-  authPage: "/auth/login",
+  tokenAccessor: "token",
+  authPage: "/auth/login", // the exact login page
   homePage: "/",
 };
 
@@ -12,4 +12,6 @@ export const rbacSetup = {
     admin: "/admin",
     superadmin: "/superadmin",
   },
+  publicRoutes: ["/verification"],
+  authRoutes: ["/auth", "/auth/login"], // pages that are used for authentication purposes
 };

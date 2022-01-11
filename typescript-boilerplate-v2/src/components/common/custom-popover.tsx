@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Popover from "@mui/material/Popover";
 import { useRef, useState } from "react";
-import { CUSTOM_POPOVER_PROPS } from "@/models";
+import { CUSTOM_POPOVER_PROPS } from "@/model";
 import { useOutsideClick } from "@/hooks";
 
 export const CustomPopover: React.FC<CUSTOM_POPOVER_PROPS> = (props) => {

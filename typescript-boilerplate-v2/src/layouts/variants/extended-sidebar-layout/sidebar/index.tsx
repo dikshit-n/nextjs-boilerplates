@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import { SidebarContext } from "@/context";
 import { SidebarMenu } from "./sidebar-menu";
-import { SIDEBAR_MENU_ITEMS_STRUCTURE } from "@/models";
+import { SIDEBAR_MENU_ITEMS_STRUCTURE } from "@/model";
 
 const StyledSidebar = styled(Box)(
   ({ theme }) => `

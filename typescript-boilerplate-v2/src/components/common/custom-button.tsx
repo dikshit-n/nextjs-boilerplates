@@ -1,4 +1,4 @@
-import { CUSTOM_BUTTON_PROPS } from "@/models";
+import { CUSTOM_BUTTON_PROPS } from "@/model";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
