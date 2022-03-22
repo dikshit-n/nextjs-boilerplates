@@ -1,4 +1,4 @@
-import { Authenticated } from "@/guards";
+import { Authenticated } from "@/guard";
 import { AdminLayout } from "@/layouts";
 import { NextPage } from "next";
 

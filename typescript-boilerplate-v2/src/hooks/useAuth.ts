@@ -1,7 +1,14 @@
 import { authApi } from "@/api";
 import { authSetup } from "@/data";
 import { useSelector, useActions } from "@/hooks";
-import { AUTH_DATA, LOGIN_AUTH_PROPS, USE_AUTH_OPTIONS } from "@/model";
+import {
+  AUTH_DATA,
+  LOGIN_AUTH_PROPS,
+  SEND_OTP_SUBMIT_DATA,
+  SIGNUP_PROPS,
+  USE_AUTH_OPTIONS,
+  VERIFY_OTP_SUBMIT_DATA,
+} from "@/model";
 import { deleteCookie, getCookie, setCookie } from "@/utils";
 
 export function useAuth() {
@@ -16,7 +23,8 @@ export function useAuth() {
         const token = getCookie("token");
         if (!token) throw new Error("Session expired");
         const data = await authApi.initialize();
-        if (updateRedux) authActions.initialize(data);
+        if (updateRedux)
+          authActions.initialize({ data, isAuthenticated: true });
         resolve(data);
       } catch (err) {
         if (updateRedux) authActions.logout();
@@ -31,10 +39,51 @@ export function useAuth() {
   ): Promise<AUTH_DATA> {
     return new Promise(async (resolve, reject) => {
       try {
-        const data = await authApi.login(loginDetails);
+        const data =
+          "phoneNumber" in loginDetails
+            ? await authApi.loginWithPhoneNumber(loginDetails)
+            : await authApi.loginWithEmail(loginDetails);
         setCookie(authSetup.tokenAccessor, data.token);
         if (updateRedux) authActions.login(data);
         resolve(data);
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
+
+  function signup(
+    signupDetails: SIGNUP_PROPS,
+    { updateRedux = true }: USE_AUTH_OPTIONS = {}
+  ): Promise<AUTH_DATA> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const data = await authApi.signup(signupDetails);
+        setCookie(authSetup.tokenAccessor, data.token);
+        if (updateRedux) authActions.login(data);
+        resolve(data);
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
+
+  function sendOTP(submitData: SEND_OTP_SUBMIT_DATA): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await authApi.sendOTP(submitData);
+        resolve();
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
+
+  function verifyOTP(submitData: VERIFY_OTP_SUBMIT_DATA): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        await authApi.verifyOTP(submitData);
+        resolve();
       } catch (err) {
         reject(err);
       }
@@ -51,12 +100,21 @@ export function useAuth() {
         if (updateRedux) authActions.logout();
         resolve();
       } catch (err) {
+        if (updateRedux) authActions.logout();
         reject(err);
       }
     });
   }
 
-  const authUsableData = { ...auth, login, logout, initialize };
+  const authUsableData = {
+    ...auth,
+    sendOTP,
+    verifyOTP,
+    login,
+    signup,
+    logout,
+    initialize,
+  };
 
   return authUsableData;
 }

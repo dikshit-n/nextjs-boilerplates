@@ -35,7 +35,7 @@ export const getError = (errorObject: Error | AxiosError) => {
 
 // creating axios instance
 export const axiosInstance = axios.create({
-  baseURL: "https://dev.api.soutrali.ci/v1",
+  baseURL: "http://20.204.3.74:5000",
 });
 
 // setting token in header for each request
@@ -80,3 +80,20 @@ export var withUploadProgress = (callBack: Function) => {
     },
   };
 };
+
+export async function createApiFunction(
+  apiCall,
+  successCallback?: any,
+  errorCallback?: any
+) {
+  try {
+    const response = await apiCall();
+    if (successCallback) {
+      return successCallback(response);
+    }
+    return response.data;
+  } catch (err) {
+    if (errorCallback) return errorCallback(err);
+    throw err;
+  }
+}

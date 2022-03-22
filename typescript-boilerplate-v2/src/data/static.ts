@@ -1,4 +1,6 @@
-import ProfileImage from "@/assets/img/sasuke-uchiha.jpg";
+// images
+export const AppLogoSrc = "/img/app-logo.png";
+export const DefaultAvatarSrc = "/img/default-avatar.png";
 
-const ProfileImagePath = "./src/assets/img/sasuke-uchiha.jpg";
-export { ProfileImage, ProfileImagePath };
+// static values
+export const bloodGroups = ["A", "B", "AB", "O"];

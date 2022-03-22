@@ -1,12 +1,25 @@
 import { CUSTOM_BUTTON_PROPS } from "@/model";
+import { styled } from "@mui/material";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
-import { ParsedUrlQueryInput } from "querystring";
+
+const LinkStyledButton = styled(Button)(
+  ({ theme }) => `
+  padding: 0;
+  color: ${theme.colors.primary.main};
+  text-align: left;
+  font-weight: normal;
+  :hover {
+    text-decoration: underline;
+    background: none;
+  }
+`
+);
 
 export const CustomButton: React.FC<CUSTOM_BUTTON_PROPS> = (props) => {
   const { push, replace } = useRouter();
-  const { loading, href, ...rest } = props;
+  const { loading, href, linkStyle, ...rest } = props;
 
   const goto = (route: CUSTOM_BUTTON_PROPS["href"]) => {
     if (route) {
@@ -21,14 +34,16 @@ export const CustomButton: React.FC<CUSTOM_BUTTON_PROPS> = (props) => {
     }
   };
 
+  const ButtonComponent = linkStyle ? LinkStyledButton : Button;
+
   return (
-    <Button
-      variant="contained"
-      color="primary"
+    <ButtonComponent
+      variant={linkStyle ? undefined : "contained"}
+      color={linkStyle ? undefined : "primary"}
       startIcon={loading ? <CircularProgress size="1rem" /> : null}
       {...rest}
       disabled={loading || props.disabled}
-      // sx={{ mt: 2, ...rest.sx }}
+      sx={{ borderRadius: "3px", ...rest.sx }}
       onClick={
         href || rest.onClick
           ? (e) => {
@@ -39,6 +54,6 @@ export const CustomButton: React.FC<CUSTOM_BUTTON_PROPS> = (props) => {
       }
     >
       {rest.children}
-    </Button>
+    </ButtonComponent>
   );
 };

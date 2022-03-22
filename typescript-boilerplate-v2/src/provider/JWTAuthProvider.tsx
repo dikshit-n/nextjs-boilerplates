@@ -1,5 +1,6 @@
 import { useAuth } from "@/hooks";
 import { getError } from "@/utils";
+// import { getError } from "@/utils";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -12,9 +13,9 @@ export const JWTAuthProvider: React.FC = (props) => {
     const initializeApp = async () => {
       try {
         await initialize();
-        window.flash({ message: "Authentication successfull" });
+        // window.flash({ message: "Authentication successfull" });
       } catch (err) {
-        window.flash({ message: getError(err), variant: "error" });
+        window.flash({ message: getError(err).message, variant: "error" });
       }
     };
     initializeApp();

@@ -16,6 +16,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import { CUSTOM_BUTTON_PROPS } from "@/model";
 import LockOpenOutlined from "@mui/icons-material/LockOpenOutlined";
+import { projectSetup } from "@/data";
 
 const StyledHeader = styled(Box)(
   ({ theme }) => `
@@ -90,7 +91,7 @@ export const Header: React.FC<HEADER_PROPS> = (props) => {
           padding: "0 10px",
         }}
       >
-        <Typography variant="h3">My Boiler Plate</Typography>
+        <Typography variant="h3">{projectSetup.title}</Typography>
         <Stack direction="row">
           <CustomPopover
             closeOnClick={false}

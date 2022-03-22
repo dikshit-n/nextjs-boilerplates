@@ -1,1 +1,1 @@
-export * from "./superadmin";
+export {};

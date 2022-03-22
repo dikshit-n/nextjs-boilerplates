@@ -7,11 +7,18 @@ export const authSetup = {
 
 // #rbac-setup
 export const rbacSetup = {
-  roles: ["admin", "superadmin"],
+  roles: ["hospital", "patient", "doctor", "reception"],
   homePage: {
-    admin: "/admin",
-    superadmin: "/superadmin",
+    hospital: "/hospital",
+    patient: "/patient",
+    doctor: "/doctor",
+    reception: "/reception",
   },
   publicRoutes: ["/verification"],
   authRoutes: ["/auth", "/auth/login"], // pages that are used for authentication purposes
+};
+
+//project-setup
+export const projectSetup = {
+  title: "HMS",
 };
