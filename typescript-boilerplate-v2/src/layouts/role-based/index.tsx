@@ -1,4 +1,3 @@
-export * from "./hospital";
+export * from "./admin";
 export * from "./doctor";
-export * from "./patient";
 export * from "./home-page";

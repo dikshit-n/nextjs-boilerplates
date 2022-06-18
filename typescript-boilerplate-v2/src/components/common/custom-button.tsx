@@ -43,7 +43,7 @@ export const CustomButton: React.FC<CUSTOM_BUTTON_PROPS> = (props) => {
       startIcon={loading ? <CircularProgress size="1rem" /> : null}
       {...rest}
       disabled={loading || props.disabled}
-      sx={{ borderRadius: "3px", ...rest.sx }}
+      sx={{ borderRadius: "30px", ...rest.sx }}
       onClick={
         href || rest.onClick
           ? (e) => {

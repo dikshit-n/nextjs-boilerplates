@@ -17,18 +17,19 @@ import ListItem from "@mui/material/ListItem";
 import { CUSTOM_BUTTON_PROPS } from "@/model";
 import LockOpenOutlined from "@mui/icons-material/LockOpenOutlined";
 import { projectSetup } from "@/data";
+import { layoutSetup } from "./layout-setup";
 
 const StyledHeader = styled(Box)(
   ({ theme }) => `
-    height: ${theme.header.height};
+    height: ${layoutSetup.header.height};
     width: 100%;
     background: ${theme.header.background};
     box-shadow: ${theme.header.boxShadow};
 
     // margin approach
     // ${theme.breakpoints.up("lg")} {
-    //   width: calc(100% - ${theme.sidebar.width});
-    //   margin-left: ${theme.sidebar.width};
+    //   width: calc(100% - 290px);
+    //   margin-left: 290px;
     // }
   `
 );

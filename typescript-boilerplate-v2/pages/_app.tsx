@@ -25,6 +25,7 @@ import "nprogress/nprogress.css";
 
 // react-query setup -- https://react-query.tanstack.com/quick-start
 import { QueryClientProvider, QueryClient } from "react-query";
+import { projectSetup } from "@/data";
 
 // to create seperate layouts for each page
 type NextPageWithLayout = NextPage & {
@@ -61,7 +62,7 @@ function MyApp({
     <CacheProvider value={emotionCache}>
       <QueryClientProvider client={queryClient}>
         <Head>
-          <title>HMS</title>
+          <title>{projectSetup.title}</title>
           <meta
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"

@@ -1,4 +1,4 @@
-import { SIDEBAR_MENU_ITEM_STRUCTURE } from "@/model";
+import { SIDEBAR_MENU_ITEM_STRUCTURE, SIDEBAR_MENU_PROPS } from "@/model";
 import { isActiveRoute } from "@/utils";
 import Button from "@mui/material/Button";
 import ListItem from "@mui/material/ListItem";
@@ -11,11 +11,13 @@ import clsx from "clsx";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export const SidebarMenuItem: React.FC<SIDEBAR_MENU_ITEM_STRUCTURE> = (
-  props
-) => {
+export const SidebarMenuItem: React.FC<
+  SIDEBAR_MENU_ITEM_STRUCTURE & {
+    closeSidebar?: SIDEBAR_MENU_PROPS["closeSidebar"];
+  }
+> = (props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { link, label, icon, items } = props;
+  const { link, label, icon, items, closeSidebar = () => {} } = props;
   const router = useRouter();
 
   if (items) {
@@ -61,6 +63,7 @@ export const SidebarMenuItem: React.FC<SIDEBAR_MENU_ITEM_STRUCTURE> = (
           }
           component="a"
           disableRipple
+          onClick={closeSidebar}
         >
           {label}
         </Button>

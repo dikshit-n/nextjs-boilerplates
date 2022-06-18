@@ -5,11 +5,12 @@ import Drawer from "@mui/material/Drawer";
 import { SidebarContext } from "@/context";
 import { SidebarMenu } from "./sidebar-menu";
 import { SIDEBAR_MENU_ITEMS_STRUCTURE } from "@/model";
+import { layoutSetup } from "../layout-setup";
 
 const StyledSidebar = styled(Box)(
   ({ theme }) => `
-    width: ${theme.sidebar.width};
-    min-width: ${theme.sidebar.width};
+    width: ${layoutSetup.sidebar.width};
+    min-width: ${layoutSetup.sidebar.width};
     background: ${theme.sidebar.background};
     height: 100vh;
     overflow: auto;
@@ -30,7 +31,7 @@ export const Sidebar: React.FC<{ routes?: SIDEBAR_MENU_ITEMS_STRUCTURE }> = (
   return (
     <>
       <StyledSidebar sx={{ display: { xs: "none", lg: "inline-block" } }}>
-        <SidebarMenu routes={props.routes} />
+        <SidebarMenu routes={props.routes} closeSidebar={closeSidebar} />
       </StyledSidebar>
       <Drawer open={isOpen} onClose={closeSidebar}>
         <StyledSidebar>

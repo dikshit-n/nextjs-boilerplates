@@ -1,9 +1,18 @@
 import { Guest } from "@/guard";
 import { NextPage } from "next";
 import { SignupContent } from "@/content/auth";
+import Head from "next/head";
+import { projectSetup } from "@/data";
 
-const Login: NextPage = () => <SignupContent />;
+const Signup: NextPage = () => (
+  <>
+    <Head>
+      <title>{projectSetup.title} - Signup</title>
+    </Head>
+    <SignupContent />
+  </>
+);
 
-Login.getLayout = (page) => <Guest>{page}</Guest>;
+Signup.getLayout = (page) => <Guest>{page}</Guest>;
 
-export default Login;
+export default Signup;

@@ -1,10 +1,8 @@
 import { Card, Grid, styled, Divider } from "@mui/material";
 import { Box } from "@mui/system";
-import { useState } from "react";
-import { MobileNumberLoginForm } from "./mobile-number-login-form";
-import { EmailLoginForm } from "./email-login-form";
+import { LoginForm } from "./login-form";
 import { CustomButton } from "@/components";
-import { AppLogoSrc } from "@/data";
+import { AppLogoExtendedSrc } from "@/data";
 
 const LoginPageWrapper = styled(Grid)`
   width: 100vw;
@@ -12,7 +10,6 @@ const LoginPageWrapper = styled(Grid)`
   overflow: auto;
   display: grid;
   place-items: center;
-  background-color: lightblue;
 `;
 
 const LoginCardWrapper = styled(Card)(
@@ -29,7 +26,7 @@ const LoginCardWrapper = styled(Card)(
         background-size: 100% auto;
         background-position: center;
         background-repeat: no-repeat;
-        background-image: url("${AppLogoSrc}");
+        background-image: url("${AppLogoExtendedSrc}");
         width: 40%;
         border-right: 1px solid lightgrey;
     }
@@ -50,29 +47,14 @@ const LoginCardWrapper = styled(Card)(
 );
 
 export const LoginContent: React.FC = () => {
-  const [emailLogin, setEmailLogin] = useState(true);
-
   return (
     <LoginPageWrapper container>
       <LoginCardWrapper>
         <Box className="image" />
         <Box className="login-form">
-          {emailLogin ? <EmailLoginForm /> : <MobileNumberLoginForm />}
-          <Divider component="div" flexItem variant="middle" sx={{ my: 2 }}>
-            <CustomButton
-              linkStyle
-              href="/auth/signup"
-              sx={{ textTransform: "none" }}
-            >
-              Create a Patient account
-            </CustomButton>
-          </Divider>
-          <CustomButton
-            sx={{ borderRadius: 5 }}
-            onClick={() => setEmailLogin((prev) => !prev)}
-          >
-            Login with {emailLogin ? "Phone number" : "Email"}
-          </CustomButton>
+          <LoginForm />
+          <Divider sx={{ my: 2 }} />
+          <CustomButton href="/auth/signup">Create Account</CustomButton>
         </Box>
       </LoginCardWrapper>
     </LoginPageWrapper>

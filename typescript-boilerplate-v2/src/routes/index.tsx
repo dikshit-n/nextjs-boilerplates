@@ -1,9 +1,7 @@
-import { hospitalRoutes } from "./hospital";
+import { adminRoutes } from "./admin";
 import { doctorRoutes } from "./doctor";
-import { patientRoutes } from "./patient";
 
 export const routes = {
-  hospital: hospitalRoutes,
+  admin: adminRoutes,
   doctor: doctorRoutes,
-  patient: patientRoutes,
 };

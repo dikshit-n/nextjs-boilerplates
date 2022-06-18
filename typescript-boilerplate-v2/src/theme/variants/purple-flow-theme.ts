@@ -240,10 +240,8 @@ export const PurpleFlowTheme = createTheme({
     menuItemIconColorActive: colors.layout.sidebar.menuItemIconColorActive,
     menuItemHeadingColor: colors.layout.sidebar.menuItemHeadingColor,
     boxShadow: "1px 1px 1px 0 #e0e0e0",
-    width: "290px",
   },
   header: {
-    height: "80px",
     background: "#fbf9fb",
     boxShadow: "0 1px 1px #e0e0e0",
     textColor: themeColors.black,

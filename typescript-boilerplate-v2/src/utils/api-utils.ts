@@ -35,7 +35,7 @@ export const getError = (errorObject: Error | AxiosError) => {
 
 // creating axios instance
 export const axiosInstance = axios.create({
-  baseURL: "http://20.204.3.74:5000",
+  baseURL: "http://localhost:5000",
 });
 
 // setting token in header for each request
@@ -95,5 +95,12 @@ export async function createApiFunction(
   } catch (err) {
     if (errorCallback) return errorCallback(err);
     throw err;
+  }
+}
+
+export async function handleError(error, customFunction?: Function) {
+  if (error) {
+    if (customFunction) customFunction(error);
+    else window.flash({ message: getError(error).message, variant: "error" });
   }
 }

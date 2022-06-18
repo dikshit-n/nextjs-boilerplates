@@ -1,9 +1,18 @@
 import * as CustomThemes from "./variants";
 
+export enum THEME_NAMES {
+  PureLightTheme = "pure-light-theme",
+  PureLightThemeMinimalSidebar = "pure-light-theme-minimal-sidebar",
+  GreyGooseTheme = "grey-goose-theme",
+  PurpleFlowTheme = "purple-flow-theme",
+}
+
 const customThemes = {
-  "pure-light-theme": CustomThemes.PureLightTheme,
-  "grey-goose-theme": CustomThemes.GreyGooseTheme,
-  "purple-flow-theme": CustomThemes.PurpleFlowTheme,
+  [THEME_NAMES.PureLightTheme]: CustomThemes.PureLightTheme,
+  [THEME_NAMES.PureLightThemeMinimalSidebar]:
+    CustomThemes.PureLightThemeMinimalSidebar,
+  [THEME_NAMES.GreyGooseTheme]: CustomThemes.GreyGooseTheme,
+  [THEME_NAMES.PurpleFlowTheme]: CustomThemes.PurpleFlowTheme,
 };
 
 export type THEME = keyof typeof customThemes;
@@ -65,6 +74,18 @@ declare module "@mui/material/styles" {
           70: string;
           100: string;
         };
+      };
+      text?: {
+        lighter: string;
+        light: string;
+        main: string;
+        dark: string;
+      };
+      secondaryText?: {
+        lighter: string;
+        light: string;
+        main: string;
+        dark: string;
       };
       secondary: {
         lighter: string;
@@ -233,7 +254,6 @@ declare module "@mui/material/styles" {
     sidebar: {
       background: React.CSSProperties["color"];
       boxShadow: React.CSSProperties["color"];
-      width: string;
       textColor: React.CSSProperties["color"];
       dividerBg: React.CSSProperties["color"];
       menuItemColor: React.CSSProperties["color"];
@@ -245,7 +265,6 @@ declare module "@mui/material/styles" {
       menuItemHeadingColor: React.CSSProperties["color"];
     };
     header: {
-      height: string;
       background: React.CSSProperties["color"];
       boxShadow: React.CSSProperties["color"];
       textColor: React.CSSProperties["color"];

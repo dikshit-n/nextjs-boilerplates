@@ -2,9 +2,17 @@ import { DoctorDashboardContent } from "@/content/doctor";
 import { Authenticated } from "@/guard";
 import { DoctorLayout } from "@/layouts";
 import { NextPage } from "next";
+import Head from "next/head";
 
 const DoctorHome: NextPage = (props) => {
-  return <DoctorDashboardContent />;
+  return (
+    <>
+      <Head>
+        <title>Home</title>
+      </Head>
+      <DoctorDashboardContent />
+    </>
+  );
 };
 
 DoctorHome.getLayout = (page) => (

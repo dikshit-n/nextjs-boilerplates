@@ -1,4 +1,4 @@
-import { SIDEBAR_MENU_ITEMS_STRUCTURE } from "@/model";
+import { SIDEBAR_MENU_PROPS } from "@/model";
 import { styled } from "@mui/material/styles";
 import List from "@mui/material/List";
 import ListSubheader from "@mui/material/ListSubheader";
@@ -57,9 +57,7 @@ const SidebarMenuWrapper = styled(List)(
     `
 );
 
-export const SidebarMenu: React.FC<{
-  routes?: SIDEBAR_MENU_ITEMS_STRUCTURE;
-}> = (props) => {
+export const SidebarMenu: React.FC<SIDEBAR_MENU_PROPS> = (props) => {
   const { routes = [] } = props;
   return (
     <>
@@ -69,7 +67,11 @@ export const SidebarMenu: React.FC<{
           subheader={<ListSubheader key={index}>{el.heading}</ListSubheader>}
         >
           {(el.items || []).map((ele, ind) => (
-            <SidebarMenuItem key={ind} {...ele} />
+            <SidebarMenuItem
+              key={ind}
+              {...ele}
+              closeSidebar={props.closeSidebar}
+            />
           ))}
         </SidebarMenuWrapper>
       ))}

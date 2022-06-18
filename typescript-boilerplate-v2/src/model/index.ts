@@ -1,5 +1,10 @@
 // react
-import type { ReactElement, ChangeEvent, JSXElementConstructor } from "react";
+import type {
+  ReactElement,
+  ChangeEvent,
+  JSXElementConstructor,
+  ReactNode,
+} from "react";
 // mui
 import type { DialogContentProps } from "@mui/material/DialogContent/DialogContent";
 import type { DialogProps } from "@mui/material/Dialog/Dialog";
@@ -60,25 +65,9 @@ export interface INITIALIZE_ACTION {
   data: AUTH_DATA | null;
 }
 
-export type LOGIN_DATA = EMAIL_LOGIN_DATA | PHONE_NUMBER_LOGIN_DATA;
-
-export interface EMAIL_LOGIN_DATA {
+export interface LOGIN_DATA {
   email: string;
   password: string;
-}
-
-export interface PHONE_NUMBER_LOGIN_DATA {
-  phoneNumber: string | number;
-  otp: string;
-}
-
-export interface SEND_OTP_SUBMIT_DATA {
-  phoneNumber: string | number;
-}
-
-export interface VERIFY_OTP_SUBMIT_DATA {
-  phoneNumber: string | number;
-  otp: string;
 }
 
 // contexts
@@ -114,6 +103,7 @@ interface UrlObject {
 
 export interface CUSTOM_ICON_BUTTON_PROPS
   extends Omit<IconButtonProps, "href"> {
+  loading?: boolean;
   href?:
     | UrlObject
     | string
@@ -145,6 +135,7 @@ export interface CUSTOM_POPOVER_PROPS
   triggerContainerProps?: Omit<BoxProps, "ref">;
   open?: boolean;
   closeOnClick?: boolean;
+  disabled?: boolean;
 }
 
 // form-elements / recursive-container
@@ -196,6 +187,7 @@ export interface FILE_INPUT_PROPS {
   onChange?: (e: File | null) => any;
   value?: File | null;
   supportedFormats?: Array<string>;
+  onError?: (err: string) => any;
   downloadName?: string;
   isDownloadable?: boolean;
   className?: string;
@@ -330,6 +322,9 @@ interface CONFIG_BASE {
 interface TEXT_FIELD_TYPE {
   type?: "text" | "password" | "email" | "color" | "";
 }
+interface DEBOUNCE_TEXT_FIELD_TYPE {
+  type?: "debounce-text";
+}
 interface PHONE_FIELD_TYPE {
   type?: "phone";
 }
@@ -379,6 +374,18 @@ type TEXT_FIELD_PROPS = Overwrite<
   TEXT_FIELD_TYPE
 > & {
   // other manually defined properties
+  addon?: null | {
+    position?: "end" | "start" | null;
+    component: null | ReactElement;
+  };
+};
+// debounce-text field
+type DEBOUNCE_TEXT_FIELD_PROPS = Overwrite<
+  TextFieldProps & CONFIG_BASE,
+  DEBOUNCE_TEXT_FIELD_TYPE
+> & {
+  // other manually defined properties
+  delay?: number | null;
   addon?: null | {
     position?: "end" | "start" | null;
     component: null | ReactElement;
@@ -484,6 +491,7 @@ type MASKED_TEXT_FIELD_PROPS = Overwrite<
 // field props
 export type FIELD_PROPS = (
   | TEXT_FIELD_PROPS
+  | DEBOUNCE_TEXT_FIELD_PROPS
   | PHONE_FIELD_PROPS
   | SELECT_FIELD_PROPS
   | FILE_INPUT_FIELD_PROPS
@@ -544,6 +552,11 @@ export type SIDEBAR_MENU_ITEMS_STRUCTURE = {
   items?: SIDEBAR_MENU_ITEM_STRUCTURE[];
 }[];
 
+export type SIDEBAR_MENU_PROPS = {
+  routes?: SIDEBAR_MENU_ITEMS_STRUCTURE;
+  closeSidebar?: () => void;
+};
+
 // header
 interface HEADER_USER_ACTION extends CUSTOM_BUTTON_PROPS {
   label?: string | JSX.Element;
@@ -558,6 +571,32 @@ export interface HEADER_PROPS {
     actions?: HEADER_USER_ACTIONS;
     logout?: (params: any) => any;
   };
+}
+
+// minimal-sidebar-layout
+
+export interface PROFILE_PROPS {
+  avatar?: {
+    image?: string | null;
+    name?: string;
+    email?: string;
+    link?: string;
+  };
+  logout?: (params: any) => any;
+}
+
+export interface MINIMAL_SIDEBAR_HEADER_PROPS {
+  brandLogo?: string | null;
+  headerProps?: MINIMAL_SIDEBAR_HEADER_PROPS;
+  profileProps?: PROFILE_PROPS;
+  extraComponent?: ReactNode | null;
+}
+
+export interface MINIMAL_SIDEBAR_LAYOUT_PROPS {
+  headerProps?: MINIMAL_SIDEBAR_HEADER_PROPS;
+  profileProps?: PROFILE_PROPS;
+  bottomComponent?: ReactNode | null;
+  sidebarRoutes?: SIDEBAR_MENU_ITEMS_STRUCTURE;
 }
 
 // ----------------------------------------------------------- //
@@ -624,28 +663,14 @@ export interface USE_AUTH_OPTIONS {
   updateRedux?: boolean;
 }
 
-export type LOGIN_AUTH_PROPS = EMAIL_LOGIN | OTP_LOGIN;
-
-export interface EMAIL_LOGIN {
+export type LOGIN_AUTH_PROPS = {
   email: string;
   password: string;
-}
-export interface OTP_LOGIN {
-  phoneNumber: string;
-  otp: string;
-}
+};
 
-export interface SIGNUP_PROPS {
-  _id: string;
-  name: string;
-  age: string | number;
-  sex: "male" | "female" | "other" | null;
-  bloodGroup: string;
-  address: string;
-  phoneNumber: string | number;
-  emiratesId: string;
-  insuranceNumber?: string;
+export interface SIGNUP_AUTH_PROPS {
   email: string;
+  password: string;
 }
 
 // ----------------------------------------------------- //

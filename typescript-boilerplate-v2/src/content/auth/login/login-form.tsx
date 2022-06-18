@@ -2,14 +2,14 @@ import { CustomButton, JustifyBetween, RecursiveContainer } from "@/components";
 import { rbacSetup } from "@/data";
 import { useAuth } from "@/hooks";
 import { CONFIG_TYPE, LOGIN_AUTH_PROPS } from "@/model";
-import { emailAuthenticationSchema } from "@/schema";
+import { authenticationSchema } from "@/schema";
 import { getError } from "@/utils";
 import { Typography } from "@mui/material";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-export const EmailLoginForm: React.FC = (props) => {
+export const LoginForm: React.FC = (props) => {
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const { push, query } = useRouter();
@@ -33,7 +33,7 @@ export const EmailLoginForm: React.FC = (props) => {
       password: "",
     },
     onSubmit: handleSubmit,
-    validationSchema: emailAuthenticationSchema,
+    validationSchema: authenticationSchema,
   });
 
   const fields: CONFIG_TYPE = [
@@ -58,7 +58,7 @@ export const EmailLoginForm: React.FC = (props) => {
         <RecursiveContainer
           config={fields}
           formik={formik}
-          validationSchema={emailAuthenticationSchema}
+          validationSchema={authenticationSchema}
         />
         <JustifyBetween sx={{ mt: 1, flexWrap: "wrap", gap: 1 }}>
           <CustomButton color="success" type="submit" loading={loading}>
