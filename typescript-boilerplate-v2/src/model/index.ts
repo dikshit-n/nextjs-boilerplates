@@ -79,17 +79,15 @@ export interface USER_PROFILE {
 
 export type USERS = USER_DETAILS[];
 
-export interface ADD_USER {
-  name: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
-
 export interface USER_DETAILS {
   name: string;
   email: string;
+  password?: string;
   _id: string;
+}
+
+export interface ADD_USER extends Omit<USER_DETAILS, "_id"> {
+  confirmPassword: string;
 }
 
 // contexts
