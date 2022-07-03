@@ -1,5 +1,7 @@
 // import { capitalize } from "../../../../utils";
-import { DateTimePicker, TextField, LocalizationProvider } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import DateTimePicker from "@mui/lab/DateTimePicker";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import AdapterMoment from "@mui/lab/AdapterMoment";
 import { getValidDate } from "@/utils";
 
@@ -15,28 +17,32 @@ export const DateTimeInput = (props) => {
 
   if (renderInput) {
     if (renderInput.props)
-      renderInput = (params) => (
+      renderInput = function renderComponent(params) {
+        return (
+          <TextField
+            fullWidth
+            variant="outlined"
+            className={props.className}
+            {...renderInput.props}
+            {...params}
+            helperText={helperText}
+            error={error}
+          />
+        );
+      };
+  } else {
+    renderInput = function renderComponent(params) {
+      return (
         <TextField
           fullWidth
           variant="outlined"
           className={props.className}
-          {...renderInput.props}
           {...params}
           helperText={helperText}
           error={error}
         />
       );
-  } else {
-    renderInput = (params) => (
-      <TextField
-        fullWidth
-        variant="outlined"
-        className={props.className}
-        {...params}
-        helperText={helperText}
-        error={error}
-      />
-    );
+    };
   }
 
   const getValue = () => {

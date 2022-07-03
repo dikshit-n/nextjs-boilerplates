@@ -19,6 +19,7 @@ import type { FormControlLabelProps } from "@mui/material/FormControlLabel";
 import type { RadioProps } from "@mui/material/Radio";
 import type { RadioGroupProps } from "@mui/material/RadioGroup";
 import type { FormGroupProps } from "@mui/material/FormGroup";
+import type { PaginationProps } from "@mui/material/Pagination";
 import type { DatePickerProps } from "@mui/lab/DatePicker/DatePicker";
 import type { DateTimePickerProps } from "@mui/lab/DateTimePicker/DateTimePicker";
 import type { TimePickerProps } from "@mui/lab/TimePicker/TimePicker";
@@ -70,6 +71,27 @@ export interface LOGIN_DATA {
   password: string;
 }
 
+// user-api
+export interface USER_PROFILE {
+  name: string;
+  email: string;
+}
+
+export type USERS = USER_DETAILS[];
+
+export interface ADD_USER {
+  name: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}
+
+export interface USER_DETAILS {
+  name: string;
+  email: string;
+  _id: string;
+}
+
 // contexts
 // sidebar-context
 export interface SIDEBAR_CONTEXT {
@@ -79,6 +101,20 @@ export interface SIDEBAR_CONTEXT {
 }
 
 // components
+
+// custom-pagination
+export interface CUSTOM_PAGINATION_PROPS extends Omit<PaginationProps, "page"> {
+  to?: string;
+  page?: string | number;
+  pageAccessor?: string;
+  stickToBottom?: boolean;
+}
+
+// async-div-spinner
+export interface ASYNC_DIV_SPINNER_PROPS {
+  count?: number;
+}
+
 // custom-icon-button props
 interface TransitionOptions {
   shallow?: boolean;
@@ -528,7 +564,7 @@ export interface RECURSIVE_CONTAINER_PROPS {
     React.DetailedHTMLProps<
       React.HTMLAttributes<HTMLDivElement>,
       HTMLDivElement
-    > & { children: ReactElement<any, any> }
+    > & { childrenContainer: ReactElement<any, any> }
   >;
 }
 
@@ -628,8 +664,12 @@ export interface MODAL_EVENT_PROPS_2 extends CONFIRMATION_MODAL_PROPS {
 export type MODAL_EVENT_PROPS = MODAL_EVENT_PROPS_1 | MODAL_EVENT_PROPS_2;
 
 export interface CONFIRMATION_MODAL_PROPS {
-  onConfirm?: Function;
-  onCancel?: Function;
+  onConfirm?: any;
+  // | ((event: React.MouseEvent<HTMLButtonElement>) => any)
+  // | Promise<any>;
+  onCancel?: any;
+  // | ((event: React.MouseEvent<HTMLButtonElement>) => any)
+  // | Promise<any>;
   title?: JSX.Element | string | null;
   description?: JSX.Element | string | null;
   confirmButton?:
